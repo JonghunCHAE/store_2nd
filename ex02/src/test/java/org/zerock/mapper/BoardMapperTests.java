@@ -1,4 +1,4 @@
-package org.zerock.persistence;
+package org.zerock.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +38,7 @@ public class BoardMapperTests {
 		log.info(board);
 	}
 	
-	@Test
+	//@Test
 	public void testInsertSelectKey() {
 		
 		BoardVO board = new BoardVO();
@@ -50,5 +50,33 @@ public class BoardMapperTests {
 		
 		log.info(board);
 	}
+	
+	//@Test
+	public void testRead() {
+		
+		BoardVO board = mapper.read(5L);
+		
+		log.info(board);
+	}
+	
+	//@Test
+	public void testDelete() {
+		
+		log.info("DELETE COUNT: " + mapper.delete(3L));
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO board = new BoardVO();
+		
+		board.setBno(5L);
+		board.setTitle("수정한 제목");
+		board.setContent("수정한 내용임");
+		board.setWriter("쿠쿠루삥뽕");
+		
+		int count = mapper.update(board);
+		log.info("UPDATE COUNT: " + count);
+	}
+	
 	
 }
