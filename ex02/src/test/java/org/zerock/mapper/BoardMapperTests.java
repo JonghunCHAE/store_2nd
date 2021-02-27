@@ -65,7 +65,7 @@ public class BoardMapperTests {
 		log.info("DELETE COUNT: " + mapper.delete(3L));
 	}
 	
-	@Test
+	//@Test
 	public void testUpdate() {
 		BoardVO board = new BoardVO();
 		
@@ -77,6 +77,7 @@ public class BoardMapperTests {
 		int count = mapper.update(board);
 		log.info("UPDATE COUNT: " + count);
 	}
+	
 	
 	
 }
