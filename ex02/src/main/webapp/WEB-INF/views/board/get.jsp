@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../includes/header.jsp" %>
@@ -40,6 +40,10 @@
 				<button data-oper='modify' class="btn btn-default"><a href="/board/modify?bno=<c:out value="${board.bno }"/>">Modify</a></button>
 				<button data-oper='list' class="btn btn-info"><a href="/board/list">List</a></button>
 				
+				<form id="operForm" action="/board/modify" method="get">
+					<input type='hidden' id="bno" name='bno' value='<c:out value="${board.bno }" />'>
+				</form>
+				
 			</div>
 			<!-- end panel body -->
 			
@@ -49,4 +53,29 @@
 	<!-- col-lg-12 -->
 </div>
 <!-- row -->
+
+<script	type="text/javascript">
+	
+	$(document).ready(() => {
+		
+		let operForm = $("#operForm");
+		
+		$("button[data-oper='modify']").on("click", e => {
+			
+			operForm.attr("action", "/board/modify").submit();
+			
+		});
+		
+		$("button[data-oper='list']").on("click",e => {
+			
+			operForm.find("#bno").remove();
+			operForm.attr("action", "/board/list");
+			operForm.submit();
+		});
+	});
+</script>
+
+
+
+
 <%@ include file="../includes/footer.jsp" %>
